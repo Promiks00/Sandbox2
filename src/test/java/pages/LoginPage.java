@@ -10,28 +10,33 @@ import java.time.Duration;
 public class LoginPage {
     WebDriver browser;
 
-    private static final By ZIP_CODE_FIELD = By.xpath("//input[@name='zip_code']");
-    private static final By CONTINUE = By.xpath("//input[@value='Continue']");
+    private static final By USERNAME_FIELD = By.id("user-name");
+    private static final By PASSWORD_FIELD = By.id("password");
+    private static final By LOGIN_BTN = By.id("login-button");
 
     public LoginPage(WebDriver browser) {
         this.browser = browser;
-
     }
 
     public void open(){
-        browser.get("https://www.sharelane.com/cgi-bin/register.py");
+        browser.get("https://www.saucedemo.com/");
     }
 
-    public void login(String zipCode){
-        browser.findElement(ZIP_CODE_FIELD).sendKeys("12");
-        browser.findElement(CONTINUE).click();
+    public void login(String username){
+        browser.findElement(USERNAME_FIELD).sendKeys(username);
+    }
 
+    public void password(String password){
+        browser.findElement(PASSWORD_FIELD).sendKeys(password);
+    }
+
+    public void clickLoginButton(){
+        browser.findElement(LOGIN_BTN).click();
     }
 
     public String checkErrorMsg(){
         WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(3));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".error_message")));
-        return browser.findElement(By.cssSelector(".error_message")).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-test='error']")));
+        return browser.findElement(By.cssSelector("[data-test='error']")).getText();
     }
-
 }
