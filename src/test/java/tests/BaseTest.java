@@ -11,6 +11,7 @@ import pages.ProductsPage;
 import java.time.Duration;
 
 public class BaseTest {
+
     public WebDriver driver;
     LoginPage loginPage;
     ProductsPage productsPage;
@@ -30,5 +31,4 @@ public class BaseTest {
     public void close() {
         driver.quit();
     }
-
 }

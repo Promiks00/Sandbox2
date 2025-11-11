@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-
 public class LoginPage extends BasePage {
 
     private static final By USERNAME_FIELD = By.id("user-name");
@@ -16,7 +15,7 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void open(){
+    public void open() {
         driver.get(BASE_URL);
     }
 
@@ -26,19 +25,19 @@ public class LoginPage extends BasePage {
         pressLoginBtn();
     }
 
-    public void fillInLogin(String username){
+    public void fillInLogin(String username) {
         driver.findElement(USERNAME_FIELD).sendKeys(username);
     }
 
-    public void fillPassword(String password){
+    public void fillPassword(String password) {
         driver.findElement(PASSWORD_FIELD).sendKeys(password);
     }
 
-    public void pressLoginBtn(){
+    public void pressLoginBtn() {
         driver.findElement(LOGIN_BTN).click();
     }
 
-    public String checkErrorMsg(){
+    public String checkErrorMsg() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(ERROR_AUTH_MSG));
         return driver.findElement(ERROR_AUTH_MSG).getText();
     }
