@@ -22,6 +22,41 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
+    public void EmptyLogin() {
+        loginPage.open();
+        loginPage.login("", "secret_sauce");
+        assertEquals(loginPage.checkErrorMsg(), "Epic sadface: Username is required");
+    }
+
+    @Test
+    public void EmptyPassword() {
+        loginPage.open();
+        loginPage.login("standard_user", "");
+        assertEquals(loginPage.checkErrorMsg(), "Epic sadface: Password is required");
+    }
+
+    @Test
+    public void EmptyLoginAndPassword() {
+        loginPage.open();
+        loginPage.login("", "");
+        assertEquals(loginPage.checkErrorMsg(), "Epic sadface: Username is required");
+    }
+
+    @Test
+    public void IncorrectLoginValidPassword() {
+        loginPage.open();
+        loginPage.login("123", "secret_sauce");
+        assertEquals(loginPage.checkErrorMsg(), "Epic sadface: Username and password do not match any user in this service");
+    }
+
+    @Test
+    public void ValidLoginIncorrectPassword() {
+        loginPage.open();
+        loginPage.login("standard_user", "12345678");
+        assertEquals(loginPage.checkErrorMsg(), "Epic sadface: Username and password do not match any user in this service");
+    }
+
+    @Test
     public void checkGoodsAddedToCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
