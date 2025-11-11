@@ -56,11 +56,4 @@ public class LoginTest extends BaseTest {
         loginPage.login("standard_user", "12345678");
         assertEquals(loginPage.checkErrorMsg(), "Epic sadface: Username and password do not match any user in this service");
     }
-
-    @Test
-    public void checkGoodsAddedToCart() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addToCart("Sauce Labs Bike Light");
-    }
 }

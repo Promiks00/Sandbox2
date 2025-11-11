@@ -8,6 +8,7 @@ public class ProductsPage extends BasePage {
     private static final String ADD_TO_CART =
             "//*[text()='%s']//ancestor:: div[@class='inventory_item']//child::button[text()='Add to cart']";
     private final By title = By.xpath("//*[@data-test='title']");
+    private final By cartBadgeCounter = By.xpath("//*[@data-test='shopping-cart-badge']");
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -24,5 +25,13 @@ public class ProductsPage extends BasePage {
     public void addToCart(final String goodsName) {
         By addToCart = By.xpath(ADD_TO_CART.formatted(goodsName));
         driver.findElement(addToCart).click();
+    }
+
+    public boolean getCartBadgeCounter() {
+        return driver.findElement(cartBadgeCounter).isDisplayed();
+    }
+
+    public String getCartCounterText() {
+        return driver.findElement(cartBadgeCounter).getText();
     }
 }
