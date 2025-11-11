@@ -4,7 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class ProductsPage extends BasePage {
-
+    // Sauce Labs Backpack
+    private static final String ADD_TO_CART =
+            "//*[text()='%s']//ancestor:: div[@class='inventory_item']//child::button[text()='Add to cart']";
     private By title = By.xpath("//*[@data-test='title']");
 
     public ProductsPage(WebDriver driver) {
@@ -18,9 +20,11 @@ public class ProductsPage extends BasePage {
     public String getTitleText() {
         return driver.findElement(title).getText();
     }
-//    assertTrue(productsTitlePresent, "Ожидалось наличие названия страницы 'Products'");
 
-
+    public void addToCart(final String goodsName) {
+        By addToCart = By.xpath(ADD_TO_CART.formatted(goodsName));
+        driver.findElement(addToCart).click();
+    }
 
 
 }

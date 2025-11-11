@@ -20,4 +20,11 @@ public class FirstClass extends BaseTest {
         loginPage.login("locked_out_user", "secret_sauce");
         assertEquals(loginPage.checkErrorMsg(), "Epic sadface: Sorry, this user has been locked out.");
     }
+
+    @Test
+    public void checkGoodsAddedToCart() {
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
+        productsPage.addToCart("Sauce Labs Bike Light");
+    }
 }
