@@ -13,6 +13,7 @@ public class LoginPage {
     private static final By USERNAME_FIELD = By.id("user-name");
     private static final By PASSWORD_FIELD = By.id("password");
     private static final By LOGIN_BTN = By.id("login-button");
+    private static final By ERROR_AUTH_MSG = By.cssSelector("[data-test='error']");
 
     public LoginPage(WebDriver browser) {
         this.browser = browser;
@@ -36,7 +37,7 @@ public class LoginPage {
 
     public String checkErrorMsg(){
         WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(3));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-test='error']")));
-        return browser.findElement(By.cssSelector("[data-test='error']")).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ERROR_AUTH_MSG));
+        return browser.findElement(ERROR_AUTH_MSG).getText();
     }
 }
