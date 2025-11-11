@@ -1,6 +1,5 @@
 package tests;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -10,9 +9,7 @@ public class FirstClass extends BaseTest {
     @Test
     public void validLogin() {
         loginPage.open();
-        loginPage.login("standard_user");
-        loginPage.password("secret_sauce");
-        loginPage.clickLoginButton();
+        loginPage.login("standard_user", "secret_sauce");
         assertTrue(productsPage.getTitle());
         assertEquals(productsPage.getTitleText(), "Products");
     }
@@ -20,9 +17,7 @@ public class FirstClass extends BaseTest {
     @Test
     public void lockedOutLogin() {
         loginPage.open();
-        loginPage.login("locked_out_user");
-        loginPage.password("secret_sauce");
-        loginPage.clickLoginButton();
+        loginPage.login("locked_out_user", "secret_sauce");
         assertEquals(loginPage.checkErrorMsg(), "Epic sadface: Sorry, this user has been locked out.");
     }
 }
