@@ -13,8 +13,8 @@ public class FirstClass extends BaseTest {
         loginPage.login("standard_user");
         loginPage.password("secret_sauce");
         loginPage.clickLoginButton();
-        boolean productsTitlePresent = browser.findElement(By.xpath("//span[@data-test='title']")).isDisplayed();
-        assertTrue(productsTitlePresent, "Ожидалось наличие названия страницы 'Products'");
+        assertTrue(productsPage.getTitle());
+        assertEquals(productsPage.getTitleText(), "Products");
     }
 
     @Test
