@@ -14,7 +14,7 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
-    public boolean getTitle() {
+    public boolean isPageOpen() {
         return driver.findElement(title).isDisplayed();
     }
 
@@ -27,11 +27,21 @@ public class ProductsPage extends BasePage {
         driver.findElement(addToCart).click();
     }
 
+    public void addToCart(final int index) {
+        By addToCart = By.xpath("//*[text()='Add to cart']");
+        driver.findElements(addToCart).get(index).click();
+    }
+
     public boolean getCartBadgeCounter() {
         return driver.findElement(cartBadgeCounter).isDisplayed();
     }
 
     public String getCartCounterText() {
         return driver.findElement(cartBadgeCounter).getText();
+    }
+
+    public void switchToCart() {
+        By cartLink = By.cssSelector("[data-test='shopping-cart-link']");
+        driver.findElement(cartLink).click();
     }
 }
