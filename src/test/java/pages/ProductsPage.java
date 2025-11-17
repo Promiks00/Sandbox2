@@ -9,6 +9,8 @@ public class ProductsPage extends BasePage {
             "//*[text()='%s']//ancestor:: div[@class='inventory_item']//child::button[text()='Add to cart']";
     private final By title = By.xpath("//*[@data-test='title']");
     private final By cartBadgeCounter = By.xpath("//*[@data-test='shopping-cart-badge']");
+    private final By addToCart = By.xpath("//*[text()='Add to cart']");
+    private final By cartLink = By.cssSelector("[data-test='shopping-cart-link']");
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -28,7 +30,6 @@ public class ProductsPage extends BasePage {
     }
 
     public void addToCart(final int index) {
-        By addToCart = By.xpath("//*[text()='Add to cart']");
         driver.findElements(addToCart).get(index).click();
     }
 
@@ -41,7 +42,6 @@ public class ProductsPage extends BasePage {
     }
 
     public void switchToCart() {
-        By cartLink = By.cssSelector("[data-test='shopping-cart-link']");
         driver.findElement(cartLink).click();
     }
 }
