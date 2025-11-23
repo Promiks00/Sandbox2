@@ -18,13 +18,14 @@ public class ProductsTest extends BaseTest {
 
     @Test
     public void validLogin() {
+        final String goodsName = "Test.allTheThings() T-Shirt (Red)";
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.isPageOpen();
         productsPage.addToCart(0);
-        productsPage.addToCart("Test.allTheThings() T-Shirt (Red)");
+        productsPage.addToCart(goodsName);
         productsPage.switchToCart();
-        assertTrue(cartPage.getProductNames().contains("Test.allTheThings() T-Shirt (Red)"));
+        assertTrue(cartPage.getProductNames().contains(goodsName));
         assertEquals(cartPage.getProductNames().size(),2);
         assertFalse(cartPage.getProductNames().isEmpty());
 
