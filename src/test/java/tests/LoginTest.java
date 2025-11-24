@@ -11,7 +11,7 @@ import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
 
-    @Epic("Модуль логина интернет-магазина")
+    @Epic("Интернет-магазин")
     @Feature("Авторизация")
     @Story("Успешное прохождение авторизации")
     @Severity(SeverityLevel.BLOCKER)
@@ -27,6 +27,7 @@ public class LoginTest extends BaseTest {
         assertEquals(productsPage.getTitleText(), "Productss");
     }
 
+
     @DataProvider
     public Object[][] loginData() {
         return new Object[][]{
@@ -39,6 +40,12 @@ public class LoginTest extends BaseTest {
         };
     }
 
+    @Epic("Интернет-магазин")
+    @Feature("Авторизация")
+    @Story("Непрохождение авторизации по причине невалидных кредов")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Prokudin Dmitry")
+    @TmsLink("Sandbox2")
     @Test(dataProvider = "loginData")
     public void incorrectLogin(User user, String errorMessage) {
         System.out.println("InCorrectLogin tests are running in thread: " + Thread.currentThread().getId());

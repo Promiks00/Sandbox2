@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import user.UserFactory;
 
@@ -7,7 +8,13 @@ import static org.testng.Assert.*;
 
 public class ProductsTest extends BaseTest {
 
-    @Test
+    @Epic("Интернет-магазин")
+    @Feature("Карточки товаров")
+    @Story("Добавление товаров в корзину")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Prokudin Dmitry")
+    @TmsLink("Sandbox2")
+    @Test (description = "Добавление товаров 'Рюкзак' и 'Велосипедная фара' в корзину")
     public void checkTwoGoodsAddedToCart() {
         loginPage.open();
         loginPage.login(UserFactory.withAdminPermission());
@@ -18,7 +25,13 @@ public class ProductsTest extends BaseTest {
         assertEquals(productsPage.getCartCounterText(), "2");
     }
 
-    @Test
+    @Epic("Интернет-магазин")
+    @Feature("Карточки товаров")
+    @Story("Проверка добавленных в корзину товаров")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Prokudin Dmitry")
+    @TmsLink("Sandbox2")
+    @Test (description = "Проверка добавления товаров 'Рюкзак' и 'Велосипедная фара' в корзину")
     public void checkGoodsAddedToCart() {
         final String goodsName = "Test.allTheThings() T-Shirt (Red)";
         System.out.println("Products tests are running in thread: " + Thread.currentThread().getId());
