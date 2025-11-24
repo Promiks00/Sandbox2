@@ -12,22 +12,25 @@ public class ProductsTest extends BaseTest {
         loginPage.login("standard_user", "secret_sauce");
         productsPage.addToCart("Sauce Labs Bike Light");
         productsPage.addToCart("Sauce Labs Bolt T-Shirt");
+
         assertTrue(productsPage.getCartBadgeCounter());
         assertEquals(productsPage.getCartCounterText(), "2");
     }
 
     @Test
-    public void validLogin() {
+    public void checkGoodsAddedToCart() {
         final String goodsName = "Test.allTheThings() T-Shirt (Red)";
+        System.out.println("Products tests are running in thread: " + Thread.currentThread().getId());
+
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.isPageOpen();
         productsPage.addToCart(0);
         productsPage.addToCart(goodsName);
         productsPage.switchToCart();
+
         assertTrue(cartPage.getProductNames().contains(goodsName));
         assertEquals(cartPage.getProductNames().size(),2);
         assertFalse(cartPage.getProductNames().isEmpty());
-
     }
 }

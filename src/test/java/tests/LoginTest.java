@@ -10,6 +10,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void validLogin() {
+        System.out.println("CorrectLogin tests are running in thread: " + Thread.currentThread().getId());
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         assertTrue(productsPage.isPageOpen());
@@ -30,6 +31,7 @@ public class LoginTest extends BaseTest {
 
     @Test(dataProvider = "loginData")
     public void incorrectLogin(String user, String password, String errorMessage) {
+        System.out.println("InCorrectLogin tests are running in thread: " + Thread.currentThread().getId());
         loginPage.open();
         loginPage.login(user, password);
         assertEquals(loginPage.checkErrorMsg(), errorMessage);
