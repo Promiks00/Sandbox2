@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import user.User;
@@ -10,13 +11,20 @@ import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Epic("Модуль логина интернет-магазина")
+    @Feature("Авторизация")
+    @Story("Успешное прохождение авторизации")
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Prokudin Dmitry")
+    @TmsLink("Sandbox2")
+    @Issue("ToyStore")
+    @Test (description = "Проверка авторизации под валидными логином и паролем", enabled = false)
     public void validLogin() {
         System.out.println("CorrectLogin tests are running in thread: " + Thread.currentThread().getId());
         loginPage.open();
         loginPage.login(UserFactory.withAdminPermission());
         assertTrue(productsPage.isPageOpen());
-        assertEquals(productsPage.getTitleText(), "Products");
+        assertEquals(productsPage.getTitleText(), "Productss");
     }
 
     @DataProvider
