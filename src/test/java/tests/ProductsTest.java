@@ -1,6 +1,7 @@
 package tests;
 
 import org.testng.annotations.Test;
+import user.UserFactory;
 
 import static org.testng.Assert.*;
 
@@ -9,7 +10,7 @@ public class ProductsTest extends BaseTest {
     @Test
     public void checkTwoGoodsAddedToCart() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(UserFactory.withAdminPermission());
         productsPage.addToCart("Sauce Labs Bike Light");
         productsPage.addToCart("Sauce Labs Bolt T-Shirt");
 
@@ -23,7 +24,7 @@ public class ProductsTest extends BaseTest {
         System.out.println("Products tests are running in thread: " + Thread.currentThread().getId());
 
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(UserFactory.withAdminPermission());
         productsPage.isPageOpen();
         productsPage.addToCart(0);
         productsPage.addToCart(goodsName);

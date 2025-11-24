@@ -12,6 +12,7 @@ import org.testng.annotations.Parameters;
 import pages.CartPage;
 import pages.LoginPage;
 import pages.ProductsPage;
+import utils.PropertyReader;
 
 import java.time.Duration;
 
@@ -21,6 +22,8 @@ public class BaseTest {
     LoginPage loginPage;
     ProductsPage productsPage;
     CartPage cartPage;
+    String user;
+    String password;
 
     @Parameters({"browser"})
     @BeforeMethod
@@ -40,6 +43,9 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
+
+        user = PropertyReader.getProperty("saucedemo.user");
+        password = PropertyReader.getProperty("saucedemo.password");
     }
 
     @AfterMethod
